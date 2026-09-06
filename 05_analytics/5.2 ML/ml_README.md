@@ -77,33 +77,4 @@ Predictions are written back into the gold layer and surfaced in Power BI, so
 the marketing team sees a risk score and a value tier next to each customer
 rather than a model output they have to interpret.
 
----
 
-## Known constraint
-
-`create_date` in the customer file is unreliable, so customer age is measured
-from first order instead. Documented in the data quality section of the main
-README.
-
----
-
-## Files
-
-```
-├── 01_extract_features.py     pull behaviour from the warehouse
-├── 02_churn_model.ipynb       build and test the churn model
-├── 03_clv_model.ipynb         build and test the value model
-└── 04_score_customers.py      score everyone, write results back
-```
-
-## Progress
-
-```
-[ ]  Extract customer behaviour features
-[ ]  Define what counts as churned
-[ ]  Build and test churn model
-[ ]  Build and test value model
-[ ]  Score full customer base
-[ ]  Power BI page: risk and value by country
-[ ]  Write up findings here
-```
