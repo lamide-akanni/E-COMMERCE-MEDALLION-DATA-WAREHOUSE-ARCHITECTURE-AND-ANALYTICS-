@@ -35,11 +35,11 @@ Not what someone spent last month, but what they are likely to be worth over
 the next year.
 
 ```
-Buying pattern  →  model  →  "expected £2,400 over 12 months"
+Buying pattern  →  model  →  "expected £0.00 over 12 months"
 ```
 
 **Why it's useful:** it changes where the marketing budget goes. A customer who
-spent £50 once and a customer who spends £50 every month look identical on a
+spent £50 once and a customer who spends £x every month look identical on a
 sales report and are worth very different amounts.
 
 ---
