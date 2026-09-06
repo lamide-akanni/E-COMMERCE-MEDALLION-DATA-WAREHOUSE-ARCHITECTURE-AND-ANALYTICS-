@@ -57,16 +57,15 @@ Every section below exists because one of those questions needed a working answe
 | **Silver** | Tables | Truncate & insert, full load | Cleansing, standardisation, type casting, derived keys, deduplication |
 | **Gold** | Views (+ one table) | None — views resolve at query time | Integration, business logic, surrogate keys, star schema |
 
-Gold is views rather than materialised tables. Views cost query time but guarantee the presentation
-layer can never drift from Silver, and they make lineage readable — the transformation is the
-object definition. `gold.dim_date` is the exception: it has no source system, so it is generated
-once as a physical table.
-
 ##
 
 ![Data Flow](01_docs/data_flow.drawio.png)
 
-
+Gold is views rather than materialised tables. Views cost query time but guarantee the presentation
+layer can never drift from Silver, and they make lineage readable — the transformation is the
+object definition. `gold.dim_date` is the exception: it has no source system, so it is generated
+once as a physical table.
+##
 ---
 
 ## Data Integration 
