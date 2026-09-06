@@ -69,7 +69,7 @@ once as a physical table.
 
 ---
 
-## Source systems and Intergation 
+## Data Integration 
 
  *Source systems landing in Bronze, cleansed in Silver, modelled as a star schema in Gold.*
 
