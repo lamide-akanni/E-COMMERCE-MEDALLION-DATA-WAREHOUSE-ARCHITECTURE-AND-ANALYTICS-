@@ -2,7 +2,7 @@
 
 Built from `gold.fact_web_events`. One row per clickstream event, 500 browsing sessions.
 
-![Conversion Funnel](conversion_funnel.png)
+![Conversion Funnel](webclick_.png)
 
 ## The funnel
 
