@@ -1,1 +1,1 @@
-
+git log --all --full-history -- .env
