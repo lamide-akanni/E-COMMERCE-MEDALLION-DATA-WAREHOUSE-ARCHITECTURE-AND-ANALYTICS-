@@ -4,14 +4,9 @@
 
 Status: **planned**
 
----
-
-## Scope
-
-```
 1.  Churn prediction        classification
 2.  Customer lifetime value probabilistic forecast
-```
+
 
 ---
 
@@ -30,8 +25,7 @@ train / test split (time-based, not random)
  (logistic)   (LightGBM)      (AUC, recall, SHAP)
     └───────────────┴───────────────┘
         ↓
-scored_customers.csv  →  Power BI page
-```
+scored_customers.csv  
 
 ---
 
@@ -62,10 +56,7 @@ reference date = MAX(order_date) in fact_sales   ← NOT today()
 | Geography | country | `dim_customers` |
 | Behaviour | sessions, cart adds, conversion rate | `fact_web_events` |
 
-```
-EXCLUDED:  dim_customers.create_date
-           60,379 / 60,398 sales predate it → unusable for tenure
-```
+
 
 ### Models
 
@@ -136,60 +127,3 @@ churn feature       CLV cohort        marketing action
 
 ---
 
-## Planned files
-
-```
-05_analytics/5.2 ML/
-├── README.md
-├── requirements.txt              pandas, scikit-learn, lightgbm, lifetimes, shap
-├── 01_extract_features.py        gold views → rfm_features.parquet
-├── 02_churn_model.ipynb          EDA, label definition, training, SHAP
-├── 03_clv_model.ipynb            BG/NBD + Gamma-Gamma
-├── 04_score_customers.py         batch scoring → scored_customers.csv
-├── models/
-│   ├── churn_lgbm.pkl
-│   └── clv_bgnbd.pkl
-└── outputs/
-    ├── rfm_features.parquet
-    └── scored_customers.csv
-```
-
----
-
-## Build order
-
-```
-[ ]  1.  Extract RFM features from gold
-[ ]  2.  Define churn window from inter-purchase distribution
-[ ]  3.  Baseline logistic regression
-[ ]  4.  LightGBM + hyperparameter tuning
-[ ]  5.  SHAP feature importance
-[ ]  6.  BG/NBD + Gamma-Gamma CLV
-[ ]  7.  Score full customer base
-[ ]  8.  Power BI page: churn risk + CLV tier by country
-[ ]  9.  Write findings into this README
-```
-
----
-
-## Constraints carried from the warehouse
-
-```
-create_date         unusable for tenure          → use first order date
-sales end 2026-01   churn relative to max(date)  → not today()
-19 null order_dates 0.03%                        → drop from feature set
-fx_rates 1 day only truncates each run           → no multi-currency CLV yet
-```
-
----
-
-## Serving
-
-```
-scored_customers.csv
-        ↓
-option A  →  load to gold.fact_customer_scores  →  Power BI direct
-option B  →  read CSV in Power BI                →  simpler, no schema change
-```
-
-Option A preferred. Predictions are a business artefact and belong in gold.
