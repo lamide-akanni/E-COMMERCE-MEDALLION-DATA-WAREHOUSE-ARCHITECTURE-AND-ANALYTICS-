@@ -27,16 +27,6 @@ and tested.
 13. [Roadmap](#roadmap)
 14. [Licence](#licence)
 
----
-## Documentation
-
-| Document | Covers |
-|---|---|
-| [Data catalog](01_docs/data_catalog.md) | Every gold object: grain, source, column definitions, known data quality caveats |
-| [Naming conventions](01_docs/naming_conventions.pdf) | Schema, table, column, procedure and file naming, including three documented deviations |
-| [Testing](04_test/README.md) | Quality checks and the pipeline failure test |
-| [Conversion funnel](05_analytics/5.1%20PowerBI/conversion_funnel.md) | Funnel stages, drop-off, and what a marketing team would act on |
-| [Machine learning](05_analytics/5.2%20ML/README.md) | Planned churn and lifetime value work |
 
 ---
 ## Why this project exists
@@ -54,6 +44,16 @@ It was built to answer questions that only surface once a warehouse has to serve
 
 Every section below exists because one of those questions needed a working answer rather than a diagram.
 
+---
+## Documentation
+
+| Document | Covers |
+|---|---|
+| [Data catalog](01_docs/data_catalog.md) | Every gold object: grain, source, column definitions, known data quality caveats |
+| [Naming conventions](01_docs/naming_conventions.pdf) | Schema, table, column, procedure and file naming, including three documented deviations |
+| [Testing](04_test/README.md) | Quality checks and the pipeline failure test |
+| [Conversion funnel](05_analytics/5.1%20PowerBI/conversion_funnel.md) | Funnel stages, drop-off, and what a marketing team would act on |
+| [Machine learning](05_analytics/5.2%20ML/README.md) | Planned churn and lifetime value work |
 
 ---
 
