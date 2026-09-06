@@ -120,6 +120,7 @@ pulled from the warehouse, producing a realistic funnel: every session opens wit
 60% search, 40% view a product, 35% of those add to cart, 40% of those click purchase. Roughly
 70% of sessions are anonymous, so `customer_id` is null on most events — by design, and the reason
 `fact_web_events` has nullable foreign keys.
+##
 ![Python ingestion](01_docs/source_python_ingestion.png)
 
 The generator reads real product numbers and customer ids from the warehouse, so
