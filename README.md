@@ -461,9 +461,9 @@ Run in SSMS, in sequence:
 ```
 1.  03_scripts/3.1 setup/DWh_schemas.sql            Database + bronze/silver/gold schemas
 2.  03_scripts/3.1 setup/ddl_bronze.sql             Bronze CRM/ERP tables
-3.  03_scripts/3.3 bronze/ddl_ext_source            Bronze inventory, fx_rates, web_events
+3.  03_scripts/3.3 bronze/ddl_b_ext_source.sql      Bronze inventory, fx_rates, web_events
 4.  03_scripts/3.1 setup/ddl_silver.sql             Silver CRM/ERP tables
-5.  03_scripts/3.4 silver/ddl_ext_source.sql        Silver inventory, fx_rates, web_events
+5.  03_scripts/3.4 silver/ddl_s_ext_source.sql      Silver inventory, fx_rates, web_events
 6.  03_scripts/3.2 source_systems/db_OLTP/*.sql     BikeShopOLTP source database
 7.  03_scripts/3.6 orchestration_/ddl_etl_log.sql   Pipeline log table
 8.  All load procedures in 3.3 and 3.4              Bronze and silver loaders
