@@ -297,7 +297,7 @@ that reports green on a broken pipeline is worse than no alerting, because you s
 ## Power BI semantic layer
 
 Import mode against the Gold views.
-![Data Model](01_docs/data_model_bi.png)
+![Data Model](01_docs/data_powerbi_model.png)
 
 
 ### Measure library
