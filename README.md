@@ -423,7 +423,7 @@ means "unknown."
 │   ├── 3.4 silver/                 Silver DDL for external sources + load procedures
 │   ├── 3.5 gold/                   dim_date generator, star schema views
 │   ├── 3.6 orchestration_/         etl_log, log_and_run, master pipeline, batch file, Slack alerts
-│   └── server_agent_job_ref.sql    SQL Agent job definition (Standard/Enterprise reference)
+│   └── SQL_server_agent_job.sql    SQL Agent job definition (Standard/Enterprise reference)
 ├── 04_test/                        Silver and gold quality checks, view definition inspector
 ├── 05_analytics/
 │   ├── 5.1 PowerBI/                Semantic model and reports
