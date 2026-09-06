@@ -188,6 +188,7 @@ Nine views plus one generated table.
 | `gold.fact_fx_rates` | View | One row per currency pair × day |
 | `gold.fact_web_events` | View | One row per clickstream event |
 | `gold.vw_fx_rates_readable` | View | Reporting convenience — FX with currency codes rather than keys |
+##
 
 ![Date dimension](01_docs/gold_dim_date.png)
 
