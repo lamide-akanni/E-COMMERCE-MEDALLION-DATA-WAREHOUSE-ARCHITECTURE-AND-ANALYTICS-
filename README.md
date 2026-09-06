@@ -50,7 +50,7 @@ Every section below exists because one of those questions needed a working answe
 
 ## Architecture
 ![Data Architecture](01_docs/data_architecture.png)
-
+##
 | Layer | Object type | Load pattern | Transformations |
 |---|---|---|---|
 | **Bronze** | Tables | Truncate & insert, full load | None — data lands exactly as the source provided it |
