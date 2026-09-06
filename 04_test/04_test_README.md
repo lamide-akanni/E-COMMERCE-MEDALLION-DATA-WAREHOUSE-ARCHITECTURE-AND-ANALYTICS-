@@ -127,4 +127,4 @@ the database.
 output is validated indirectly by the silver checks on `fx_rates` and `web_events`.
 
 **Incremental correctness.** Every load is a full truncate and insert, so there is no incremental
-logic to test. This changes if watermark-based loading is added.
+logic to test. 
