@@ -14,7 +14,7 @@ and tested.
 
 1. [Why this project exists](#why-this-project-exists)
 2. [Architecture](#architecture)
-3. [Source systems](#source-systems)
+3. [Data Integration](#data_integration)
 4. [The medallion layers](#the-medallion-layers)
 5. [Data model](#data-model)
 6. [Orchestration and observability](#orchestration-and-observability)
@@ -73,7 +73,7 @@ once as a physical table.
 
  *Source systems landing in Bronze, cleansed in Silver, modelled as a star schema in Gold.*
 
-![Data Intergration](01_docs/data_integration.drawio.png)
+![Data Integration](01_docs/data_integration.drawio.png)
 
  ##
 ```
