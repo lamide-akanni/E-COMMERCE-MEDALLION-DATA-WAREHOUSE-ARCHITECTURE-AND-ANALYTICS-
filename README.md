@@ -317,17 +317,13 @@ Each handoff can silently drop it:
 
 Fixing only one of these changes nothing. All three are required for a failure to travel end to
 end.
+ ##
+![Slack alerts](01_docs/pipeline_slack_alerts.jpeg)
+**This was verified, not assumed.**
 
-**This was verified, not assumed.** Renaming `silver.inventory` mid-pipeline produced a FAILED row
+Renaming `silver.inventory` mid-pipeline broke the pipeline, and it signals a FAILED row
 in `etl_log` and a ❌ Slack alert. Before the fixes, the same broken run reported SUCCESS. Alerting
 that reports green on a broken pipeline is worse than no alerting, because you stop checking it.
-
-![Slack alerts](01_docs/pipeline_slack_alerts.jpeg)
-
-Both outcomes reaching the same channel. 14:52 succeeded, 14:54 failed after
-`silver.inventory` was deliberately renamed mid-run, 15:07 succeeded again once
-the table was restored. Before the `THROW`, `-b` and `%errorlevel%` fixes, the
-14:54 run posted a green tick.
 
 ---
 
