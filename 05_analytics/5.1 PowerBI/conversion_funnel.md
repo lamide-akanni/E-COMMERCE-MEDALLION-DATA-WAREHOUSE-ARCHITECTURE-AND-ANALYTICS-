@@ -1,8 +1,6 @@
 # Conversion Funnel
 
-Built from `gold.fact_web_events`. One row per clickstream event, 500 browsing sessions.
-
-![Conversion Funnel](webclick_.png)
+Built from `gold.fact_web_events`. One row per clickstream event; #500 browsing sessions.
 
 ## The funnel
 
@@ -29,11 +27,6 @@ Built from `gold.fact_web_events`. One row per clickstream event, 500 browsing s
 2. **Then the product to cart step.** Weakest conversion. Cross against `fact_inventory`: if the most-viewed products are below reorder level, this is a stock problem, not a marketing one.
 3. **Leave checkout alone for now.** It is performing.
 
-## Diagnostics available in the model
-
-- **By country.** `dim_customers` slices the funnel by market. Divergent conversion usually means shipping cost or currency display.
-- **Identified against anonymous.** Roughly 70% of sessions carry no `customer_key`. If identified users convert better, the barrier is account friction.
-- **Against sales.** Products with high views and low `fact_sales` revenue are pricing or description problems.
 
 ## Caveat
 
