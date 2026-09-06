@@ -13,18 +13,19 @@ and tested.
 ## Table of contents
 
 1. [Why this project exists](#why-this-project-exists)
-2. [Architecture](#architecture)
-3. [Data Integration](#data_integration)
-4. [The medallion layers](#the-medallion-layers)
-5. [Data model](#data-model)
-6. [Orchestration and observability](#orchestration-and-observability)
-7. [Power BI semantic layer](#power-bi-semantic-layer)
-8. [Data quality findings](#data-quality-findings)
-9. [Repository structure](#repository-structure)
-10. [Setup and running the pipeline](#setup-and-running-the-pipeline)
-11. [Design decisions and trade-offs](#design-decisions-and-trade-offs)
-12. [Roadmap](#roadmap)
-13. [Licence](#licence)
+2. [Documentation](#documentation)
+3. [Architecture](#architecture)
+4. [Data Integration](#data_integration)
+5. [The medallion layers](#the-medallion-layers)
+6. [Data model](#data-model)
+7. [Orchestration and observability](#orchestration-and-observability)
+8. [Power BI semantic layer](#power-bi-semantic-layer)
+9. [Data quality findings](#data-quality-findings)
+10. [Repository structure](#repository-structure)
+11. [Setup and running the pipeline](#setup-and-running-the-pipeline)
+12. [Design decisions and trade-offs](#design-decisions-and-trade-offs)
+13. [Roadmap](#roadmap)
+14. [Licence](#licence)
 
 ---
 ## Documentation
