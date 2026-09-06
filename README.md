@@ -28,7 +28,6 @@ and tested.
 
 ---
 
-## Why this project exists
 
 ## Why this project exists
 
