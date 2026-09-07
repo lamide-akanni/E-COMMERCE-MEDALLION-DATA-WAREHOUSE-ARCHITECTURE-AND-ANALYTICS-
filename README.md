@@ -588,19 +588,6 @@ the answer is nearly always a measure instead.
 
 ---
 
-## Roadmap
-
-- **Churn model** — RFM segmentation over `fact_sales`, then a classifier on the resulting features
-- **FX history** — `fetch_fx_rates.py` currently truncates on each run, so `fact_fx_rates` holds a
-  single day. Switching to append unlocks rate trends and multi-currency revenue restatement
-- **Incremental loads** — full truncate-and-insert is correct at this volume; watermark-based
-  incremental loading is the next step at scale
-- **Data catalog and naming conventions** — `01_docs/` is scaffolded and awaiting content
-- **Slowly changing dimensions** — `crm_prd_info` already carries the start/end date structure for
-  SCD Type 2; Gold currently exposes only the current version
-
----
-
 ## Licence
 
 MIT — see [LICENSE](LICENSE).
