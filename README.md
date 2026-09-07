@@ -6,7 +6,7 @@ Gold medallion architecture, models a star schema for analytics, and serves a go
 semantic layer with row-level security. Orchestration, logging, successful pipeline run or failure alerting are included
 and tested.
 
-##
+
 
 # Tech Stack
 
