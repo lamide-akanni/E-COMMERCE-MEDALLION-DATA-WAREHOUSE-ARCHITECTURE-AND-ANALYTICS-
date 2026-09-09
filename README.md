@@ -1,4 +1,4 @@
-# Shop360Bike - Medallion Data Warehouse & Analytics Platform
+# Shop360Bike - Medallion Data Warehouse & Analytics Platform 
 
 An end-to-end data e-commerce platform for a UK bike retailer, built on Microsoft SQL Server.
 The project ingests from four heterogeneous source systems, transforms through a Bronze → Silver →
