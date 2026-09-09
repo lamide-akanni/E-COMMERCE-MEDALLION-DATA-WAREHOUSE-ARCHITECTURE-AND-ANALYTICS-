@@ -605,7 +605,7 @@ the answer is nearly always a measure instead.
 
 MIT - see [LICENSE](LICENSE).
 
-Source datasets derive from the Microsoft AdventureWorks sample database. Inventory, FX and
+Source datasets derive from the Microsoft AdventureWorks database. Inventory, FX and
 Clickstream data are generated; see [Data quality findings](#data-quality-findings) for the
 transformations applied.
 
