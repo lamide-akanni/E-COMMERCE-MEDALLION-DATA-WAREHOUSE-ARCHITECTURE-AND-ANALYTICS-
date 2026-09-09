@@ -3,7 +3,7 @@
 An end-to-end data e-commerce platform for a UK bike retailer, built on Microsoft SQL Server.
 The project ingests from four heterogeneous source systems, transforms through a Bronze → Silver →
 Gold medallion architecture, models a star schema for analytics, and serves a governed Power BI
-semantic layer with row-level security. Orchestration, logging, successful pipeline run or failure alerting are included
+semantic layer with row-level security. Orchestration, logging, successful pipeline run or failure alerting are included 
 and tested.
 
 ##
