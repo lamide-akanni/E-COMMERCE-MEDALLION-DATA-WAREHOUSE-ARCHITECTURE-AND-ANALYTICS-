@@ -43,7 +43,7 @@ and tested.
 ---
 ## Why this project exists
 
-The scope goes beyond a single flat-file source, one fact table or a set of SELECT statements. 
+The scope goes beyond a single flat-file source, a single fact table, or a set of SELECT statements. 
 
 It was built to answer questions that only surface once a warehouse has to serve a real business:
 
@@ -114,34 +114,35 @@ clickstream (Py)    ┘      tables    tables     views + dim_date
 ```
 ##
 
-### 1. CRM — CSV extracts
+### 1. CRM - CSV extracts
 `cust_info.csv`, `prd_info.csv`, `sales_details.csv`. Customer master, product catalogue with
 historised start/end dates, and 60,398 sales order lines. Loaded via `BULK INSERT`.
 
-### 2. ERP — CSV extracts
+### 2. ERP - CSV extracts
 `CUST_AZ12.csv` (birthdate, gender), `LOC_A101.csv` (country), `PX_CAT_G1V2.csv` (product
 category hierarchy). Same customer entity as CRM but keyed differently and with inconsistent
 formatting — `NASAW00011000` vs `AW-00011000` vs `AW00011000`. Resolving that is Silver's job.
 
-### 3. BikeShopOLTP — a separate operational database
+### 3. BikeShopOLTP - a separate operational database
 A second SQL Server database holding `dbo.products` and `dbo.inventory`: daily stock snapshots
 across six UK warehouses (London, Manchester, Edinburgh, Glasgow, Cardiff, Belfast). Bronze reads
 it via a cross-database query, which is how a warehouse normally pulls from an operational system
 on the same instance.
 
-`BikeShopOLTP` is deliberately self-contained — it loads its own product catalogue from the CRM
+`BikeShopOLTP` is deliberately self-contained; it loads its own product catalogue from the CRM
 
 
-### 4. exchangerate-api.com — live REST API
+### 4. exchangerate-api.com - live REST API
 `fetch_fx_rates.py` pulls GBP→USD/EUR/CAD/AUD daily rates and writes them to `bronze.fx_rates`.
 The API key is read from `.env` via `python-dotenv` and never appears in source control.
 
-### 5. Clickstream — generated  events
+### 5. Clickstream - generated  events
 `generate_web_events.py` simulates 500 browsing sessions against real product and customer keys
 pulled from the warehouse, producing a realistic funnel: every session opens with a `page_view`,
 60% search, 40% view a product, 35% of those add to cart, 40% of those click purchase. Roughly
 70% of sessions are anonymous, so `customer_id` is null on most events — by design, and the reason
 `fact_web_events` has nullable foreign keys.
+
 ##
 ![Python ingestion](01_docs/source_python_ingestion.png)
 
@@ -150,10 +151,9 @@ events reference rows that exist rather than random strings. Credentials come
 from `.env`, which is gitignored.
 
 ---
-
 ## The medallion layers
 
-### Bronze — land it, don't touch it
+### Bronze - land it, don't touch it
 
 Nine tables. `TRUNCATE` then `BULK INSERT` (CSV) or `INSERT ... SELECT` (cross-database) or
 `executemany` (Python). No cleansing, no type coercion beyond what the DDL enforces, no derived
@@ -162,7 +162,7 @@ columns. If the source sends `20101229` as an integer, Bronze stores an integer.
 The point of Bronze is that you can always answer "what did the source actually send us?" without
 re-extracting.
 
-### Silver — clean, standardise, conform
+### Silver - clean, standardise, conform
 
 Nine tables mirroring Bronze, plus a `dwh_create_date` audit column on each. The substantive work:
 
@@ -194,7 +194,7 @@ bucket.
 timestamp (`CAST(CONVERT(VARCHAR(8), snapshot_date, 112) AS INT)`), giving all four facts a common
 join to `gold.dim_date`.
 
-### Gold — model it for the business
+### Gold - model it for the business
 
 Nine views plus one generated table.
 
@@ -210,6 +210,7 @@ Nine views plus one generated table.
 | `gold.fact_fx_rates` | View | One row per currency pair × day |
 | `gold.fact_web_events` | View | One row per clickstream event |
 | `gold.vw_fx_rates_readable` | View | Reporting convenience — FX with currency codes rather than keys |
+
 ##
 
 ![Date dimension](01_docs/gold_dim_date.png)
@@ -219,7 +220,7 @@ Nine views plus one generated table.
 intelligence.
 
 `dim_date` is built with a recursive CTE and `OPTION (MAXRECURSION 0)`. It carries both `date_key`
-(integer, for joining) and `full_date` (DATE, for Power BI DAX time intelligence) — the same table serving
+(integer, for joining) and `full_date` (DATE, for Power BI DAX time intelligence) - the same table serving
 two different consumers.
 
 Surrogate keys are generated with `ROW_NUMBER()` in the dimension views, keeping warehouse keys
@@ -245,13 +246,13 @@ roles of the same calendar. `order_date` holds the active relationship because "
 means the month the order was placed. The other two are inactive.
 
 **`fact_fx_rates` → `dim_currency`, twice.** `base_currency_key` and `target_currency_key`. Target
-is active — "what was the GBP→USD rate" is the question people ask.
+is active - "what was the GBP→USD rate" is the question people ask.
 
 ### Relationship rules
 
-Fourteen relationships. All cardinality is one-to-many except the security bridge. All cross-filter
+Fourteen relationships. All cardinalities are one-to-many except for the security bridge. All cross-filter
 directions are Single, dimension → fact. Bidirectional filtering is avoided entirely: with four
-facts sharing dimensions it creates ambiguous filter paths that either block relationship creation
+facts sharing dimensions, it creates ambiguous filter paths that either block relationship creation
 or, worse, silently return wrong numbers.
 
 The one many-to-many is `dim_security` → `dim_customers` on `country`, which is the standard shape
@@ -335,7 +336,7 @@ end.
 **This was verified, not assumed.**
 
 Renaming `silver.inventory` mid-pipeline broke the pipeline, and it signals a FAILED row
-in `etl_log` and a ❌ Slack alert. Before the fixes, the same broken run reported SUCCESS. Alerting
+in `etl_log` and a Slack alert. Before the fixes, the same broken run reported SUCCESS. Alerting
 that reports green on a broken pipeline is worse than no alerting, because you stop checking it.
 
 ---
@@ -371,7 +372,7 @@ Conversion Rate = DIVIDE([Purchase Clicks], [Page Views])
 Sales YoY % = DIVIDE([Total Sales] - [Sales Last Year], [Sales Last Year])
 ```
 
-`DIVIDE` rather than `/` throughout — it returns blank on divide-by-zero instead of an error.
+`DIVIDE` rather than `/` throughout - it returns blank on divide-by-zero instead of an error.
 
 ### Row-level security
 
@@ -387,7 +388,7 @@ Sales YoY % = DIVIDE([Total Sales] - [Sales Last Year], [Sales Last Year])
 
 The filter cascades `dim_security → dim_customers → fact_sales` and `→ fact_web_events`, so one
 relationship secures two facts. Six Location Marketing Managers hold one country each; one Global
-Marketing Manager holds six rows, one per country — demonstrating that the same rule handles both
+Marketing Manager holds six rows, one per country - demonstrating that the same rule handles both
 scoped and unrestricted access without a second role.
 
 `fact_inventory` and `fact_fx_rates` are deliberately unsecured: warehouse stock and exchange rates
@@ -428,7 +429,7 @@ reconciled: **60,379 of 60,398 sales rows predate their customer's create date.*
 
 Not corrected. Fixing it would mean inventing create dates to make a chart look tidy. The practical
 consequence is that `create_date` must not be used to compute customer tenure or "new customers per
-month" — both are derived from first order date instead, which is arguably the better definition
+month" - both are derived from first order date instead, which is arguably the better definition
 anyway.
 
 ### Sources living in different eras
@@ -447,7 +448,7 @@ Twelve years keeps months and seasonality intact (October stays October) and lan
 end dates were shifted identically so the catalogue timeline stays consistent with the transactions
 referencing it.
 
-This is a documented transformation, not a cleansing step — it is commented in
+This is a documented transformation, not a cleansing step - it is commented in
 `proc_load_slv_crm_erp.sql` and disclosed here. Birthdates were deliberately *not* shifted:
 shifting an attribute date would make every customer twelve years younger and corrupt any age
 analysis. The rule applied was **shift event dates, never attribute dates.**
@@ -602,7 +603,7 @@ the answer is nearly always a measure instead.
 
 ## Licence
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
 
 Source datasets derive from the Microsoft AdventureWorks sample database. Inventory, FX and
 Clickstream data are generated; see [Data quality findings](#data-quality-findings) for the
