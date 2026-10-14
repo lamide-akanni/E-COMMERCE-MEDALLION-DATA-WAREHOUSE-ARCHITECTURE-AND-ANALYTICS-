@@ -4,21 +4,9 @@ An end-to-end data e-commerce platform for a UK bike retailer, built on Microsof
 The project ingests from four heterogeneous source systems, transforms through a Bronze → Silver →
 Gold medallion architecture, models a star schema for analytics, and serves a governed Power BI
 semantic layer with row-level security. Orchestration, logging, successful pipeline run or failure alerting are included 
-and tested.
+and tested. 
 
-##
-
- **Tech Stack**
-
-| Layer | Tools |
-|-------|-------|
-| Database | Microsoft SQL Server (Express) |
-| Query | T-SQL |
-| Scripting | PowerShell + Python 3 |
-| Scheduling | Windows Task Scheduler |
-| Reporting | Power BI + DAX |
-| Integration | Slack webhooks |
-
+Tech Stack: SQL, Microsoft SQL Server (Express), Python 3, Slack Webhooks, Power BI & DAX.
 
 ---
 
